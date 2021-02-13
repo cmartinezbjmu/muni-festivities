@@ -22,9 +22,9 @@ class Response200:
     else:
       data = {}
     response = {
-        "data": data,
-        "server_info": self.server_info,
-        "user_message": self.user_message,
+      "data": data,
+      "server_info": self.server_info,
+      "user_message": self.user_message,
     }
     return JsonResponse(response, status=self.status_code)
 
@@ -46,12 +46,11 @@ class Response201:
     else:
       data = {}
     response = {
-        "data": data,
-        "server_info": self.server_info,
-        "user_message": self.user_message,
+      "data": data,
+      "server_info": self.server_info,
+      "user_message": self.user_message,
     }
-    return JsonResponse(response, status=self.status_code)    
-
+    return JsonResponse(response, status=self.status_code)
 
 class Response400:
   """The Response400 class allows to create
@@ -66,8 +65,8 @@ class Response400:
   def get_response(self):
     data = {}
     response = {
-        "data": data,
-        "server_info": self.server_info,
-        "user_message": self.user_message,
+      "data": data,
+      "server_info": self.server_info,
+      "user_message": self.user_message,
     }
     return JsonResponse(response, status=self.status_code)

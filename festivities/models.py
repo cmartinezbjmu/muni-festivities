@@ -13,7 +13,7 @@ class Festivity(models.Model):
       start_date: (Date & time) Date to start festivity
       end_date: (Date & time) Date to end festivity
       place: (str) The place where they will be held the celebrate
-      createdAt: Date & time filed to store creation date 
+      createdAt: Date & time filed to store creation date
       updatedAt: Date & time filed to store last updated date
 
   '''

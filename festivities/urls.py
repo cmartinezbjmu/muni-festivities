@@ -12,6 +12,6 @@ urlpatterns = [
         name='festivities-list'),
   path('festivities/<int:pk>/',
         FestivitiesViewSet.as_view({'patch': 'update'}),
-        name='festivities-detail'),        
-  path("are-you-alive", check_status, name="check-alive"),        
+        name='festivities-detail'),
+  path('are-you-alive', check_status, name='check-alive'),
 ]
