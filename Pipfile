@@ -10,6 +10,11 @@ django = "*"
 djangorestframework = "*"
 psycopg2-binary = "*"
 django-debug-toolbar = "*"
+pylint = "*"
+pylint-django = "*"
+pylint-plugin-utils = "*"
+coverage = "*"
+unittest-xml-reporting = "*"
 
 [requires]
 python_version = "3.8"
