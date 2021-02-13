@@ -1,0 +1,21 @@
+# Example: https://github.com/googleapis/google-auth-library-python/blob/master/.coveragerc and https://coverage.readthedocs.io/en/coverage-5.3.1/config.html#run
+
+[run]
+branch = True
+
+[paths]
+source =
+
+[report]
+fail_under = 80
+omit =
+    main/*
+    responses*
+    manage.py
+exclude_lines =
+    # Re-enable the standard pragma
+    pragma: NO COVER
+    # Ignore debug-only repr
+    def __repr__
+    # Don't complain if tests don't hit defensive assertion code:
+    raise NotImplementedError

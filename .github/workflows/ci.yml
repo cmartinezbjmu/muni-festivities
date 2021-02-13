@@ -1,0 +1,39 @@
+name: Muni festivities CI
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+jobs:
+  ci:
+    name: Continuous integration
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Use Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install pipenv
+        run: |
+          pip install pipenv
+          pipenv lock --requirements > requirements.txt
+      - name: Install project
+        run: pip install -r requirements.txt
+      - name: Pylint
+        run: pylint --fail-under=9 *
+      - name: Test
+        run: coverage run --source='.' manage.py test
+        env:
+          SECRET_KEY: test_key
+          ALLOWED_HOSTS: '*'
+          SETTINGS_MODULE: 'main.settings.develop'
+          DJANGO_SETTINGS_MODULE: 'main.settings.develop'
