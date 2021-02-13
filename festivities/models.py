@@ -8,13 +8,14 @@ class Festivity(models.Model):
   Festivity model store the festivity information.
   ...
   Attributes
-        
+
       name: (str) The festivity name
       start_date: (Date & time) Date to start festivity
       end_date: (Date & time) Date to end festivity
       place: (str) The place where they will be held the celebrate
-      createdAt: Date & time filed to store creation date 
+      createdAt: Date & time filed to store creation date
       updatedAt: Date & time filed to store last updated date
+
   '''
   name = models.CharField(max_length=150, blank=False, null=False)
   start_date = models.DateField(null=False, blank=False)

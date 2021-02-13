@@ -22,12 +22,35 @@ class Response200:
     else:
       data = {}
     response = {
-        "data": data,
-        "serverInfo": self.server_info,
-        "userMessage": self.user_message,
+      "data": data,
+      "server_info": self.server_info,
+      "user_message": self.user_message,
     }
     return JsonResponse(response, status=self.status_code)
 
+class Response201:
+  """The Response201 class allows to create
+  objects to returns HTTP 201 responses
+  """
+
+  def __init__(self, attr, data, server_info=None, user_message=""):
+    self.attr = attr
+    self.data = data
+    self.server_info = server_info if server_info is not None else {}
+    self.user_message = user_message
+    self.status_code = status_codes.HTTP_201_CREATED
+
+  def get_response(self):
+    if self.data:
+      data = {"{}".format(self.attr): self.data}
+    else:
+      data = {}
+    response = {
+      "data": data,
+      "server_info": self.server_info,
+      "user_message": self.user_message,
+    }
+    return JsonResponse(response, status=self.status_code)
 
 class Response400:
   """The Response400 class allows to create
@@ -42,8 +65,8 @@ class Response400:
   def get_response(self):
     data = {}
     response = {
-        "data": data,
-        "serverInfo": self.server_info,
-        "userMessage": self.user_message,
+      "data": data,
+      "server_info": self.server_info,
+      "user_message": self.user_message,
     }
     return JsonResponse(response, status=self.status_code)
