@@ -77,3 +77,18 @@ class FestivityTestCase(TestCase):
     response_data = json.loads(response.content)
     self.assertEqual(response_data["user_message"], "Sorry, please check queryparams.")
     self.assertEqual(response.status_code, 400)    
+
+  def test_festivities_create(self):
+    """Valid test to create a festivity."""
+
+    response = self.client.post(
+        reverse("festivities-detail"), {
+                                        "name": "New event",
+                                        "start_date": "2021-05-13",
+                                        "end_date": "2021-05-20",
+                                        "place": "Stadium"
+                                      }, formal="json"
+    )
+    response_data = json.loads(response.content)
+    self.assertEqual(response_data["data"]["festivity"]["place"], "Stadium")
+    self.assertEqual(response.status_code, 200)    
