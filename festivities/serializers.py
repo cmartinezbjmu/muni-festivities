@@ -12,8 +12,8 @@ class FestivitySerializer(serializers.ModelSerializer):
   incoming data for create festivity object. Deliver the
   serialized model also.
   """
-  
+
   class Meta:
     """Serializer settings."""
     model = Festivity
-    fields = ["name", "start_date", "end_date", "place"]
+    fields = ["id", "name", "start_date", "end_date", "place"]
