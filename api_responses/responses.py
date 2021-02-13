@@ -23,8 +23,8 @@ class Response200:
       data = {}
     response = {
         "data": data,
-        "serverInfo": self.server_info,
-        "userMessage": self.user_message,
+        "server_info": self.server_info,
+        "user_message": self.user_message,
     }
     return JsonResponse(response, status=self.status_code)
 
@@ -43,7 +43,7 @@ class Response400:
     data = {}
     response = {
         "data": data,
-        "serverInfo": self.server_info,
-        "userMessage": self.user_message,
+        "server_info": self.server_info,
+        "user_message": self.user_message,
     }
     return JsonResponse(response, status=self.status_code)
