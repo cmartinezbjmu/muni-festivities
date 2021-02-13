@@ -42,7 +42,19 @@ class FestivitiesViewSet(ModelViewSet):
   serializer_class = FestivitySerializer
 
   def list(self, request):
-    festivities = Festivity.objects.all()
+    if request.GET:
+      if 'name' in request.GET:
+        festivities = Festivity.objects.filter(name=request.GET['name'])
+      elif 'start_date' in request.GET:
+        festivities = Festivity.objects.filter(start_date=request.GET['start_date'])
+      elif 'place' in request.GET:
+        festivities = Festivity.objects.filter(place=request.GET['place'])
+      elif ('start_range' in request.GET) and ('end_range' in request.GET):
+        festivities = Festivity.objects.filter(start_date__range=[request.GET['start_range'], request.GET['end_range']])
+      else:
+        return Response400(user_message='Sorry, please check queryparams.').get_response()    
+    else:
+      festivities = Festivity.objects.all()
     serializer = FestivitySerializer(festivities, many=True)
     return Response200('festivities',
                         serializer.data,

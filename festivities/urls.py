@@ -9,6 +9,6 @@ from .views import check_status, FestivitiesViewSet
 urlpatterns = [
   path('festivities/',
         FestivitiesViewSet.as_view({'get': 'list'}),
-        name='festivities-list'),
+        name='festivities-detail'),
   path("are-you-alive", check_status, name="check-alive"),        
 ]
