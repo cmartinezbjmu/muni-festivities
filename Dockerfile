@@ -1,15 +1,10 @@
-FROM python:3.8-alpine
+FROM python:3.8-slim
 
 # Generate requirements.txt file
 RUN pip install pipenv
 COPY Pipfile* /
 RUN pipenv lock --requirements > requirements.txt
 
-# Add dependecy of django postgres driver
-#RUN apk update && apk add libpq
-
-# Install uWSGI dependencies
-#RUN apk add --update --no-cache --virtual .tmp gcc libc-dev linux-headers build-base postgresql-dev
 # Install project packages
 RUN pip install -r requirements.txt
 # Keeps docker lightweight removing temporary installation files
@@ -20,6 +15,9 @@ RUN mkdir /app
 COPY . /app
 # Change directory to roles_ms
 WORKDIR /app
+# set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 # Copy scripts dir
 COPY ./scripts /scripts
 # Updates execution permissions
@@ -29,11 +27,14 @@ RUN chmod +x /scripts/*.sh
 RUN mkdir -p /web/static
 
 # Creates a new user (best practices)
-RUN adduser -D appUser
-RUN chown -R appUser:appUser /web
+RUN adduser app-user
+RUN chown -R app-user:app-user /web
 RUN chmod -R 755 /web
-RUN chown -R appUser:appUser /app
+RUN chown -R app-user:app-user /app
 RUN chmod -R 755 /app
 
 # Switch to created user
-USER appUser
+USER app-user
+
+# Execute BD
+#ENTRYPOINT ["/scripts/entrypoint.sh"]

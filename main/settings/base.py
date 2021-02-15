@@ -79,8 +79,13 @@ WSGI_APPLICATION = 'main.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': os.environ.get('DBENGINE', 'django.db.backends.sqlite3'),
+        'NAME': os.environ.get('DBNAME', os.path.join(BASE_DIR, "db.sqlite3")),
+        'USER': os.environ.get('DBUSER', None),
+        'PASSWORD': os.environ.get('DBPASS', None),
+        'HOST': os.environ.get('DBHOST', None),
+        'PORT': os.environ.get('DBPORT', None),
+        'TIME_ZONE': os.environ.get('TIME_ZONE', 'America/Bogota')
     }
 }
 
