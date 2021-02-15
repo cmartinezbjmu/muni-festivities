@@ -18,8 +18,8 @@ class Festivity(models.Model):
 
   '''
   name = models.CharField(max_length=150, blank=False, null=False)
-  start_date = models.DateField(null=False, blank=False)
-  end_date = models.DateField(null=False, blank=False)
+  start_date = models.DateTimeField(null=False, blank=False)
+  end_date = models.DateTimeField(null=False, blank=False)
   place = models.CharField(max_length=150, blank=False, null=False)
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)
