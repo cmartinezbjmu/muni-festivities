@@ -16,12 +16,12 @@ class FestivityTestCase(TestCase):
   @classmethod
   def setUpTestData(cls):
     Festivity.objects.create(
-      name="Juan Fers Birthday", start_date="2021-02-13",
-      end_date="2021-02-13", place="Park"
+      name="Juan Fers Birthday", start_date="2021-02-13 20:40:26.744511-05",
+      end_date="2021-02-13 00:40:26.744511-05", place="Park"
     )
     Festivity.objects.create(
-      name="Christmas", start_date="2021-12-24",
-      end_date="2021-12-25", place="House"
+      name="Christmas", start_date="2021-12-24 00:40:26.00000-00",
+      end_date="2021-12-25 00:40:26.744511-05", place="House"
     )
 
   def test_festivities_list(self):
@@ -42,18 +42,18 @@ class FestivityTestCase(TestCase):
       reverse("festivities-list"), {"name": "Christmas"}, formal="json"
     )
     response_data = json.loads(response.content)
-    self.assertEqual(response_data["data"]["festivities"][0]["start_date"],
-      "2021-12-24")
+    self.assertEqual(response_data["data"]["festivities"][0]["place"],
+      "House")
     self.assertEqual(response.status_code, 200)
 
   def test_festivities_list_by_queryparam_start_date(self):
     """Valid test to retrieve festivities filtered by queryparams start_date"""
 
     response = self.client.get(
-      reverse("festivities-list"), {"start_date": "2021-12-24"}, formal="json"
+      reverse("festivities-list"), {"start_date": "2021-02-13 20:40:26.744511-05"}, formal="json"
     )
     response_data = json.loads(response.content)
-    self.assertEqual(response_data["data"]["festivities"][0]["place"], "House")
+    self.assertEqual(response_data["data"]["festivities"][0]["place"], "Park")
     self.assertEqual(response.status_code, 200)
 
   def test_festivities_list_by_queryparam_place(self):
@@ -100,8 +100,8 @@ class FestivityTestCase(TestCase):
     response = self.client.post(
       reverse("festivities-list"), {
         "name": "New event",
-        "start_date": "2021-05-13",
-        "end_date": "2021-05-20",
+        "start_date": "2021-05-13 00:40:26.744511-05",
+        "end_date": "2021-05-20 00:40:26.744511-05",
         "place": "Stadium"
       }, formal="json"
     )
@@ -115,8 +115,8 @@ class FestivityTestCase(TestCase):
     response = self.client.post(
       reverse("festivities-list"), {
         "name": "New event",
-        "start_date": "2021-05-13",
-        "end_date": "2021-05-20"
+        "start_date": "2021-05-13 00:40:26.744511-05",
+        "end_date": "2021-05-20 00:40:26.744511-05"
       }, formal="json"
     )
     response_data = json.loads(response.content)
