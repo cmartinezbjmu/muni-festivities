@@ -8,11 +8,13 @@ Festivities are special times different places have to celebrate their local hab
 
 In this short diagram, you can see the approach to implementing this API. A script was created with Docker Compose for the deployment of the application and database containers using Django and PostgresDB, additionally a "postgres_data" volume was created to persist the database information. 
 
-
+[Context diagram](https://github.com/cmartinezbjmu/muni-festivities/blob/develop/docs/img/muni_context.jpeg)
 
 ## CI PIPELINE
 
 In this diagram, you can see a simple approach given for the Continuous Integration Pipeline. GitHub actions were used for unit test processing and code coverage. 
+
+[CI Pipeline](https://github.com/cmartinezbjmu/muni-festivities/blob/develop/docs/img/ci_pipeline.jpeg)
 
 ## Requeriments
 
