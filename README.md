@@ -14,7 +14,7 @@ In this short diagram, you can see the approach to implementing this API. A scri
 
 In this diagram, you can see a simple approach given for the Continuous Integration Pipeline. GitHub actions were used for unit test processing and code coverage. 
 
-![https://github.com/cmartinezbjmu/muni-festivities/blob/develop/docs/img/ci_pipeline.jpeg](CI Pipeline)
+![CI Pipeline](https://github.com/cmartinezbjmu/muni-festivities/blob/develop/docs/img/ci_pipeline.jpeg)
 
 ## Requeriments
 
