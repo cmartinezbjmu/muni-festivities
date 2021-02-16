@@ -1,0 +1,1 @@
+"""Festivities admin."""
