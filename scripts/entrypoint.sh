@@ -2,13 +2,11 @@
 
 set -e
 
-# Creates django static files
-python manage.py collectstatic --noinput
-
-# Apply migrations
+# Migrate database
 python manage.py migrate
 
-# Load default actions
-#python manage.py loaddata action_fixtures
+# Load default festivities
+python manage.py loaddata festivities/utils/fixtures
 
-#uwsgi --http :$GLOBAL_PORT --master --enable-threads --module main.wsgi
+# Start Django app
+python manage.py runserver 0.0.0.0:8000

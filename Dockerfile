@@ -37,4 +37,4 @@ RUN chmod -R 755 /app
 USER app-user
 
 # Execute BD
-#ENTRYPOINT ["/scripts/entrypoint.sh"]
+ENTRYPOINT ["/scripts/entrypoint.sh"]
